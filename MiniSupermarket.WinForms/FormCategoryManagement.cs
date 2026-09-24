@@ -1,4 +1,5 @@
 ﻿using System.Net.Http.Json;
+using System.Net.Http.Headers;
 
 namespace MiniSupermarket.WinForms
 {
@@ -14,6 +15,23 @@ namespace MiniSupermarket.WinForms
         };
 
         // =========================================================
+        // GỬI JWT TOKEN KÈM THEO REQUEST
+        // =========================================================
+
+        private HttpClient GetAuthenticatedClient()
+        {
+            if (!string.IsNullOrEmpty(SessionManager.JwtToken))
+            {
+                _client.DefaultRequestHeaders.Authorization =
+                    new AuthenticationHeaderValue(
+                        "Bearer",
+                        SessionManager.JwtToken);
+            }
+
+            return _client;
+        }
+
+        // =========================================================
         // CONSTRUCTOR
         // =========================================================
 
@@ -21,7 +39,6 @@ namespace MiniSupermarket.WinForms
         {
             InitializeComponent();
 
-            // Hiển thị URL API ở thanh trạng thái
             lblStatus.Text =
                 "Ready    " +
                 _client.BaseAddress + "categories";
@@ -50,12 +67,12 @@ namespace MiniSupermarket.WinForms
                 lblStatus.Text = "Đang tải dữ liệu...";
 
                 var categories =
-                    await _client.GetFromJsonAsync<List<CategoryDto>>(
-                        "categories");
+                    await GetAuthenticatedClient()
+                        .GetFromJsonAsync<List<CategoryDto>>(
+                            "categories");
 
                 dgvCategories.DataSource = categories;
 
-                // Đổi tên tiêu đề cột cho giống đề bài
                 if (dgvCategories.Columns.Contains("CategoryId"))
                 {
                     dgvCategories.Columns["CategoryId"].HeaderText =
@@ -108,14 +125,12 @@ namespace MiniSupermarket.WinForms
                 DataGridViewRow row =
                     dgvCategories.Rows[e.RowIndex];
 
-                // CategoryId
                 if (row.Cells["CategoryId"].Value != null)
                 {
                     txtId.Text =
                         row.Cells["CategoryId"].Value.ToString();
                 }
 
-                // CategoryName
                 if (row.Cells["CategoryName"].Value != null)
                 {
                     txtCategoryName.Text =
@@ -126,7 +141,6 @@ namespace MiniSupermarket.WinForms
                     txtCategoryName.Text = "";
                 }
 
-                // Description
                 if (row.Cells["Description"].Value != null)
                 {
                     txtDescription.Text =
@@ -139,7 +153,6 @@ namespace MiniSupermarket.WinForms
             }
             catch
             {
-                // Không làm gì nếu dòng không hợp lệ
             }
         }
 
@@ -165,7 +178,6 @@ namespace MiniSupermarket.WinForms
             object sender,
             EventArgs e)
         {
-            // Kiểm tra tên nhóm hàng
             if (string.IsNullOrWhiteSpace(
                 txtCategoryName.Text))
             {
@@ -192,9 +204,10 @@ namespace MiniSupermarket.WinForms
                 };
 
                 var response =
-                    await _client.PostAsJsonAsync(
-                        "categories",
-                        newCategory);
+                    await GetAuthenticatedClient()
+                        .PostAsJsonAsync(
+                            "categories",
+                            newCategory);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -239,7 +252,6 @@ namespace MiniSupermarket.WinForms
             object sender,
             EventArgs e)
         {
-            // Kiểm tra ID
             if (string.IsNullOrWhiteSpace(txtId.Text))
             {
                 MessageBox.Show(
@@ -251,7 +263,6 @@ namespace MiniSupermarket.WinForms
                 return;
             }
 
-            // Kiểm tra ID
             if (!int.TryParse(
                 txtId.Text,
                 out int id))
@@ -265,7 +276,6 @@ namespace MiniSupermarket.WinForms
                 return;
             }
 
-            // Kiểm tra tên
             if (string.IsNullOrWhiteSpace(
                 txtCategoryName.Text))
             {
@@ -294,9 +304,10 @@ namespace MiniSupermarket.WinForms
                 };
 
                 var response =
-                    await _client.PutAsJsonAsync(
-                        $"categories/{id}",
-                        updateCategory);
+                    await GetAuthenticatedClient()
+                        .PutAsJsonAsync(
+                            $"categories/{id}",
+                            updateCategory);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -341,7 +352,6 @@ namespace MiniSupermarket.WinForms
             object sender,
             EventArgs e)
         {
-            // Kiểm tra ID
             if (string.IsNullOrWhiteSpace(txtId.Text))
             {
                 MessageBox.Show(
@@ -353,7 +363,6 @@ namespace MiniSupermarket.WinForms
                 return;
             }
 
-            // Kiểm tra ID
             if (!int.TryParse(
                 txtId.Text,
                 out int id))
@@ -367,7 +376,6 @@ namespace MiniSupermarket.WinForms
                 return;
             }
 
-            // Xác nhận xóa
             DialogResult result =
                 MessageBox.Show(
                     $"Bạn có chắc muốn xóa nhóm hàng ID = {id}?",
@@ -381,8 +389,9 @@ namespace MiniSupermarket.WinForms
             try
             {
                 var response =
-                    await _client.DeleteAsync(
-                        $"categories/{id}");
+                    await GetAuthenticatedClient()
+                        .DeleteAsync(
+                            $"categories/{id}");
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -430,8 +439,6 @@ namespace MiniSupermarket.WinForms
             string keyword =
                 txtKeyword.Text.Trim();
 
-            // Không nhập từ khóa
-            // => tải toàn bộ danh sách
             if (string.IsNullOrWhiteSpace(keyword))
             {
                 await LoadDataAsync();
@@ -447,13 +454,13 @@ namespace MiniSupermarket.WinForms
                     Uri.EscapeDataString(keyword);
 
                 var result =
-                    await _client.GetFromJsonAsync<
-                        List<CategoryDto>>(
-                        $"categories/search?keyword={encodedKeyword}");
+                    await GetAuthenticatedClient()
+                        .GetFromJsonAsync<
+                            List<CategoryDto>>(
+                            $"categories/search?keyword={encodedKeyword}");
 
                 dgvCategories.DataSource = result;
 
-                // Đặt lại tên cột
                 if (dgvCategories.Columns.Contains("CategoryId"))
                 {
                     dgvCategories.Columns["CategoryId"].HeaderText =

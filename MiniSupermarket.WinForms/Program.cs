@@ -8,7 +8,7 @@ namespace MiniSupermarket.WinForms
             ApplicationConfiguration.Initialize();
 
             Application.Run(
-                new FormCategoryManagement());
+                new FormLogin());
         }
     }
 }

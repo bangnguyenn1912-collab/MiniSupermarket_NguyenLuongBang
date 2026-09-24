@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MiniSupermarket.API.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MiniSupermarket.API.Controllers
 {
-    [Route("api/[controller]")] // Định tuyến cơ sở: /api/categories
+    [Route("api/[controller]")]
+    [Authorize]
+    // Định tuyến cơ sở: /api/categories
     [ApiController]
     public class CategoriesController : ControllerBase
     {
@@ -97,6 +100,19 @@ namespace MiniSupermarket.API.Controllers
             }
             _categories.Remove(cat);
             return NoContent();
+        }
+        [HttpGet("admin-dashboard")]
+        [Authorize(Roles = "Admin")]
+        public IActionResult AdminDashboard()
+        {
+            return Ok("Chỉ Admin mới được truy cập");
+        }
+
+        [HttpGet("staff-pos")]
+        [Authorize(Roles = "Admin,Cashier")]
+        public IActionResult StaffPos()
+        {
+            return Ok("Admin và Cashier được truy cập");
         }
     }
 }
