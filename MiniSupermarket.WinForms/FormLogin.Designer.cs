@@ -39,41 +39,44 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(198, 86);
+            label1.Location = new Point(226, 115);
             label1.Name = "label1";
-            label1.Size = new Size(60, 15);
+            label1.Size = new Size(74, 20);
             label1.TabIndex = 0;
             label1.Text = "Tài khoản:";
             // 
             // txtUsername
             // 
-            txtUsername.Location = new Point(264, 83);
+            txtUsername.Location = new Point(302, 111);
+            txtUsername.Margin = new Padding(3, 4, 3, 4);
             txtUsername.Name = "txtUsername";
-            txtUsername.Size = new Size(209, 23);
+            txtUsername.Size = new Size(238, 27);
             txtUsername.TabIndex = 1;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(198, 149);
+            label2.Location = new Point(226, 199);
             label2.Name = "label2";
-            label2.Size = new Size(60, 15);
+            label2.Size = new Size(73, 20);
             label2.TabIndex = 2;
             label2.Text = "Mật khẩu:";
             // 
             // txtPassword
             // 
-            txtPassword.Location = new Point(264, 141);
+            txtPassword.Location = new Point(302, 188);
+            txtPassword.Margin = new Padding(3, 4, 3, 4);
             txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(209, 23);
+            txtPassword.Size = new Size(238, 27);
             txtPassword.TabIndex = 3;
             txtPassword.UseSystemPasswordChar = true;
             // 
             // btnLogin
             // 
-            btnLogin.Location = new Point(398, 192);
+            btnLogin.Location = new Point(440, 255);
+            btnLogin.Margin = new Padding(3, 4, 3, 4);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(75, 23);
+            btnLogin.Size = new Size(100, 31);
             btnLogin.TabIndex = 4;
             btnLogin.Text = "Đăng nhập";
             btnLogin.UseVisualStyleBackColor = true;
@@ -82,25 +85,27 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(324, 38);
+            label3.Location = new Point(370, 51);
             label3.Name = "label3";
-            label3.Size = new Size(67, 15);
+            label3.Size = new Size(85, 20);
             label3.TabIndex = 5;
             label3.Text = "Đăng Nhập";
             // 
             // FormLogin
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(914, 600);
             Controls.Add(label3);
             Controls.Add(btnLogin);
             Controls.Add(txtPassword);
             Controls.Add(label2);
             Controls.Add(txtUsername);
             Controls.Add(label1);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "FormLogin";
             Text = "FormLogin";
+            Load += FormLogin_Load;
             ResumeLayout(false);
             PerformLayout();
         }

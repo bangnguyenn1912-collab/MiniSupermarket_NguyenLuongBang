@@ -112,5 +112,10 @@ namespace MiniSupermarket.WinForms
                     MessageBoxIcon.Error);
             }
         }
+
+        private void FormLogin_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
