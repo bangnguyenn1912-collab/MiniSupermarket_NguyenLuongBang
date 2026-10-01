@@ -178,6 +178,9 @@ namespace MiniSupermarket.WinForms
             object sender,
             EventArgs e)
         {
+            if (!EnsureAdminPermission("thêm"))
+                return;
+
             if (string.IsNullOrWhiteSpace(
                 txtCategoryName.Text))
             {
@@ -252,6 +255,9 @@ namespace MiniSupermarket.WinForms
             object sender,
             EventArgs e)
         {
+            if (!EnsureAdminPermission("cập nhật"))
+                return;
+
             if (string.IsNullOrWhiteSpace(txtId.Text))
             {
                 MessageBox.Show(
@@ -352,6 +358,9 @@ namespace MiniSupermarket.WinForms
             object sender,
             EventArgs e)
         {
+            if (!EnsureAdminPermission("xóa"))
+                return;
+
             if (string.IsNullOrWhiteSpace(txtId.Text))
             {
                 MessageBox.Show(
@@ -518,6 +527,25 @@ namespace MiniSupermarket.WinForms
             txtDescription.Clear();
 
             txtCategoryName.Focus();
+        }
+
+        private bool EnsureAdminPermission(string operation)
+        {
+            if (string.Equals(
+                SessionManager.CurrentRole,
+                "Admin",
+                StringComparison.OrdinalIgnoreCase))
+            {
+                return true;
+            }
+
+            MessageBox.Show(
+                $"Bạn không có quyền {operation} nhóm hàng. Chỉ Admin mới được phép thực hiện thao tác này.",
+                "Không có quyền",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning);
+
+            return false;
         }
     }
 
