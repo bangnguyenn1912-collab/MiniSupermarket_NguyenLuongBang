@@ -1,6 +1,6 @@
 # 🛒 HỆ THỐNG QUẢN LÝ SIÊU THỊ MINI (MINISUPERMARKET SYSTEM)
 > **Môn học:** Lập trình Ứng dụng .NET Core (Mã môn: 229162)  
-> **Buổi thực hành:** Buổi 1 - Xây dựng Web API quản lý danh mục và kết nối WinForms Client (CRUD)
+> **Buổi thực hành:** BUỔI 2: BẢO MẬT & PHÂN QUYỀN JWT CHO WEB API
 
 ---
 
