@@ -46,92 +46,92 @@ namespace MiniSupermarket.API.Migrations
                         new
                         {
                             CategoryId = 1,
-                            CategoryName = "Kẹo",
-                            Description = "Các loại kẹo mềm, kẹo cứng, kẹo dẻo nhập khẩu"
+                            CategoryName = "Mì gói & Thực phẩm ăn liền",
+                            Description = "Mì ly, phở và các món ăn liền"
                         },
                         new
                         {
                             CategoryId = 2,
-                            CategoryName = "Socola",
-                            Description = "Socola thanh, socola viên và socola hộp nhập khẩu"
+                            CategoryName = "Đồ ăn chế biến sẵn",
+                            Description = "Cơm nắm, bánh mì sandwich và thức ăn dùng ngay"
                         },
                         new
                         {
                             CategoryId = 3,
-                            CategoryName = "Bánh quy",
-                            Description = "Bánh quy bơ, bánh quy socola và bánh quy nhập khẩu"
+                            CategoryName = "Xúc xích & Thực phẩm đóng gói",
+                            Description = "Xúc xích và thực phẩm đóng gói tiện lợi"
                         },
                         new
                         {
                             CategoryId = 4,
-                            CategoryName = "Bánh xốp",
-                            Description = "Các loại bánh xốp, wafer và bánh kem xốp"
+                            CategoryName = "Bánh & Đồ ăn vặt",
+                            Description = "Bánh đóng gói, snack và đồ ăn nhẹ"
                         },
                         new
                         {
                             CategoryId = 5,
-                            CategoryName = "Snack",
-                            Description = "Snack khoai tây, snack ngô và các loại đồ ăn nhẹ"
+                            CategoryName = "Nước giải khát",
+                            Description = "Nước suối và nước giải khát đóng chai, đóng lon"
                         },
                         new
                         {
                             CategoryId = 6,
-                            CategoryName = "Bánh ngọt",
-                            Description = "Bánh ngọt đóng gói và các loại bánh nhập khẩu"
+                            CategoryName = "Trà & Cà phê",
+                            Description = "Trà đóng chai và cà phê uống liền"
                         },
                         new
                         {
                             CategoryId = 7,
-                            CategoryName = "Kẹo dẻo",
-                            Description = "Kẹo dẻo trái cây, kẹo dẻo hình thú và kẹo gummy"
+                            CategoryName = "Sữa & Sản phẩm từ sữa",
+                            Description = "Sữa tươi và thức uống từ sữa"
                         },
                         new
                         {
                             CategoryId = 8,
-                            CategoryName = "Socola cao cấp",
-                            Description = "Socola cao cấp, socola quà tặng và socola hộp"
+                            CategoryName = "Nước tăng lực",
+                            Description = "Các loại nước uống bổ sung năng lượng"
                         },
                         new
                         {
                             CategoryId = 9,
-                            CategoryName = "Bánh quy cao cấp",
-                            Description = "Bánh quy cao cấp dùng làm quà tặng"
+                            CategoryName = "Khăn giấy & Chăm sóc cá nhân",
+                            Description = "Khăn giấy và vật dụng chăm sóc cá nhân"
                         },
                         new
                         {
                             CategoryId = 10,
-                            CategoryName = "Kẹo bạc hà",
-                            Description = "Kẹo bạc hà, kẹo the và kẹo ngậm nhập khẩu"
+                            CategoryName = "Hóa phẩm gia đình",
+                            Description = "Nước giặt và các hóa phẩm dùng trong gia đình"
                         },
                         new
                         {
                             CategoryId = 11,
-                            CategoryName = "Kẹo trái cây",
-                            Description = "Các loại kẹo có hương vị trái cây"
+                            CategoryName = "Bánh mì & Bữa sáng",
+                            Description = "Bánh mì và các sản phẩm tiện lợi cho bữa sáng"
                         },
                         new
                         {
                             CategoryId = 12,
-                            CategoryName = "Bánh ăn sáng",
-                            Description = "Bánh ngũ cốc, bánh ăn sáng và sản phẩm tiện lợi"
+                            CategoryName = "Đồ hộp & Thực phẩm khô",
+                            Description = "Thực phẩm đóng hộp, mì và các sản phẩm khô"
                         },
                         new
                         {
                             CategoryId = 13,
-                            CategoryName = "Hạt & Đồ ăn vặt",
-                            Description = "Các loại hạt, trái cây sấy và đồ ăn vặt nhập khẩu"
+                            CategoryName = "Kem & Thực phẩm đông lạnh",
+                            Description = "Kem và thực phẩm bảo quản đông lạnh"
                         },
                         new
                         {
                             CategoryId = 14,
-                            CategoryName = "Quà tặng bánh kẹo",
-                            Description = "Hộp bánh kẹo và set quà tặng Sweet Land"
+                            CategoryName = "Gia vị & Nhu yếu phẩm",
+                            Description = "Gia vị và các sản phẩm thiết yếu hằng ngày"
                         },
                         new
                         {
                             CategoryId = 15,
-                            CategoryName = "Bánh kẹo khác",
-                            Description = "Các sản phẩm bánh kẹo nhập khẩu khác"
+                            CategoryName = "Đồ dùng tiện lợi",
+                            Description = "Các vật dụng nhỏ phục vụ nhu cầu hằng ngày"
                         });
                 });
 
@@ -173,7 +173,7 @@ namespace MiniSupermarket.API.Migrations
                         new
                         {
                             CustomerId = 1,
-                            Address = "25 Nguyễn Huệ, Quận 1, TP.HCM",
+                            Address = "25 Nguyễn Huệ, phường Sài Gòn, TP.HCM",
                             CustomerName = "Nguyễn Văn An",
                             MembershipRank = "Vàng",
                             PhoneNumber = "0901122334",
@@ -182,7 +182,7 @@ namespace MiniSupermarket.API.Migrations
                         new
                         {
                             CustomerId = 2,
-                            Address = "118 Võ Văn Tần, Quận 3, TP.HCM",
+                            Address = "118 Võ Văn Tần, phường Bàn Cờ, TP.HCM",
                             CustomerName = "Trần Thị Bình",
                             MembershipRank = "Bạc",
                             PhoneNumber = "0918877665",
@@ -191,7 +191,7 @@ namespace MiniSupermarket.API.Migrations
                         new
                         {
                             CustomerId = 3,
-                            Address = "72 Nguyễn Trãi, Quận 5, TP.HCM",
+                            Address = "72 Nguyễn Trãi, phường Chợ Quán, TP.HCM",
                             CustomerName = "Lê Văn Cường",
                             MembershipRank = "Chuẩn",
                             PhoneNumber = "0983344556",
@@ -200,7 +200,7 @@ namespace MiniSupermarket.API.Migrations
                         new
                         {
                             CustomerId = 4,
-                            Address = "156 Thành Thái, Quận 10, TP.HCM",
+                            Address = "156 Thành Thái, phường Diên Hồng, TP.HCM",
                             CustomerName = "Phạm Thị Dung",
                             MembershipRank = "Vàng",
                             PhoneNumber = "0905678123",
@@ -209,7 +209,7 @@ namespace MiniSupermarket.API.Migrations
                         new
                         {
                             CustomerId = 5,
-                            Address = "43 Điện Biên Phủ, Quận Bình Thạnh, TP.HCM",
+                            Address = "43 Điện Biên Phủ, phường Gia Định, TP.HCM",
                             CustomerName = "Hoàng Văn Đức",
                             MembershipRank = "Bạc",
                             PhoneNumber = "0912345678",
@@ -218,7 +218,7 @@ namespace MiniSupermarket.API.Migrations
                         new
                         {
                             CustomerId = 6,
-                            Address = "89 Phạm Văn Đồng, Quận Gò Vấp, TP.HCM",
+                            Address = "89 Phạm Văn Đồng, phường Hạnh Thông, TP.HCM",
                             CustomerName = "Võ Thị Hà",
                             MembershipRank = "Kim Cương",
                             PhoneNumber = "0987654321",
@@ -227,7 +227,7 @@ namespace MiniSupermarket.API.Migrations
                         new
                         {
                             CustomerId = 7,
-                            Address = "215 Cộng Hòa, Quận Tân Bình, TP.HCM",
+                            Address = "215 Cộng Hòa, phường Tân Bình, TP.HCM",
                             CustomerName = "Đặng Văn Giang",
                             MembershipRank = "Chuẩn",
                             PhoneNumber = "0909876543",
@@ -236,7 +236,7 @@ namespace MiniSupermarket.API.Migrations
                         new
                         {
                             CustomerId = 8,
-                            Address = "36 Phan Đình Phùng, Quận Phú Nhuận, TP.HCM",
+                            Address = "36 Phan Đình Phùng, phường Cầu Kiệu, TP.HCM",
                             CustomerName = "Bùi Thị Hoa",
                             MembershipRank = "Bạc",
                             PhoneNumber = "0913456789",
@@ -245,7 +245,7 @@ namespace MiniSupermarket.API.Migrations
                         new
                         {
                             CustomerId = 9,
-                            Address = "102 Nguyễn Thị Thập, Quận 7, TP.HCM",
+                            Address = "102 Nguyễn Thị Thập, phường Tân Hưng, TP.HCM",
                             CustomerName = "Đỗ Văn Hùng",
                             MembershipRank = "Kim Cương",
                             PhoneNumber = "0981234567",
@@ -254,7 +254,7 @@ namespace MiniSupermarket.API.Migrations
                         new
                         {
                             CustomerId = 10,
-                            Address = "68 Hậu Giang, Quận 6, TP.HCM",
+                            Address = "68 Hậu Giang, phường Bình Phú, TP.HCM",
                             CustomerName = "Nguyễn Thị Khánh",
                             MembershipRank = "Chuẩn",
                             PhoneNumber = "0903456789",
@@ -263,7 +263,7 @@ namespace MiniSupermarket.API.Migrations
                         new
                         {
                             CustomerId = 11,
-                            Address = "145 Võ Văn Ngân, TP. Thủ Đức, TP.HCM",
+                            Address = "145 Võ Văn Ngân, phường Thủ Đức, TP.HCM",
                             CustomerName = "Trương Văn Long",
                             MembershipRank = "Vàng",
                             PhoneNumber = "0915678901",
@@ -272,7 +272,7 @@ namespace MiniSupermarket.API.Migrations
                         new
                         {
                             CustomerId = 12,
-                            Address = "234 Lê Văn Khương, Quận 12, TP.HCM",
+                            Address = "234 Lê Văn Khương, phường Thới An, TP.HCM",
                             CustomerName = "Phan Thị Mai",
                             MembershipRank = "Bạc",
                             PhoneNumber = "0986789012",
@@ -281,7 +281,7 @@ namespace MiniSupermarket.API.Migrations
                         new
                         {
                             CustomerId = 13,
-                            Address = "57 Lũy Bán Bích, Quận Tân Phú, TP.HCM",
+                            Address = "57 Lũy Bán Bích, phường Tân Phú, TP.HCM",
                             CustomerName = "Lý Văn Nam",
                             MembershipRank = "Kim Cương",
                             PhoneNumber = "0907890123",
@@ -290,7 +290,7 @@ namespace MiniSupermarket.API.Migrations
                         new
                         {
                             CustomerId = 14,
-                            Address = "321 Tỉnh Lộ 10, Quận Bình Tân, TP.HCM",
+                            Address = "321 Tỉnh Lộ 10, phường Bình Trị Đông, TP.HCM",
                             CustomerName = "Huỳnh Thị Phương",
                             MembershipRank = "Chuẩn",
                             PhoneNumber = "0918901234",
@@ -299,7 +299,7 @@ namespace MiniSupermarket.API.Migrations
                         new
                         {
                             CustomerId = 15,
-                            Address = "78 Nguyễn Hữu Trí, Huyện Bình Chánh, TP.HCM",
+                            Address = "78 Nguyễn Hữu Trí, xã Tân Nhựt, TP.HCM",
                             CustomerName = "Mai Văn Quân",
                             MembershipRank = "Vàng",
                             PhoneNumber = "0989012345",
@@ -344,137 +344,137 @@ namespace MiniSupermarket.API.Migrations
                         new
                         {
                             ProductId = 1,
-                            Barcode = "SWT000001",
-                            CategoryId = 7,
-                            Price = 95000m,
-                            ProductName = "Kẹo dẻo Haribo Goldbears 200g",
+                            Barcode = "CK000001",
+                            CategoryId = 1,
+                            Price = 18000m,
+                            ProductName = "Mì ly Omachi sườn hầm ngũ quả 67g",
                             StockQuantity = 100
                         },
                         new
                         {
                             ProductId = 2,
-                            Barcode = "SWT000002",
-                            CategoryId = 8,
-                            Price = 189000m,
-                            ProductName = "Socola Ferrero Rocher 16 viên",
-                            StockQuantity = 80
+                            Barcode = "CK000002",
+                            CategoryId = 1,
+                            Price = 12000m,
+                            ProductName = "Mì ly Hảo Hảo tôm chua cay 67g",
+                            StockQuantity = 150
                         },
                         new
                         {
                             ProductId = 3,
-                            Barcode = "SWT000003",
-                            CategoryId = 9,
-                            Price = 165000m,
-                            ProductName = "Bánh quy bơ Danisa 454g",
-                            StockQuantity = 60
+                            Barcode = "CK000003",
+                            CategoryId = 2,
+                            Price = 25000m,
+                            ProductName = "Cơm nắm cá ngừ mayonnaise",
+                            StockQuantity = 50
                         },
                         new
                         {
                             ProductId = 4,
-                            Barcode = "SWT000004",
-                            CategoryId = 4,
-                            Price = 79000m,
-                            ProductName = "Bánh xốp Loacker Quadratini Chocolate 125g",
-                            StockQuantity = 90
+                            Barcode = "CK000004",
+                            CategoryId = 2,
+                            Price = 22000m,
+                            ProductName = "Bánh mì sandwich xúc xích",
+                            StockQuantity = 60
                         },
                         new
                         {
                             ProductId = 5,
-                            Barcode = "SWT000005",
-                            CategoryId = 5,
-                            Price = 72000m,
-                            ProductName = "Snack khoai tây Pringles Original 107g",
+                            Barcode = "CK000005",
+                            CategoryId = 3,
+                            Price = 15000m,
+                            ProductName = "Xúc xích tiệt trùng CP 70g",
                             StockQuantity = 120
                         },
                         new
                         {
                             ProductId = 6,
-                            Barcode = "SWT000006",
-                            CategoryId = 2,
-                            Price = 115000m,
-                            ProductName = "Socola KitKat Mini 170g",
-                            StockQuantity = 100
+                            Barcode = "CK000006",
+                            CategoryId = 4,
+                            Price = 32000m,
+                            ProductName = "Bánh Chocopie Orion 6 cái",
+                            StockQuantity = 80
                         },
                         new
                         {
                             ProductId = 7,
-                            Barcode = "SWT000007",
-                            CategoryId = 10,
-                            Price = 35000m,
-                            ProductName = "Kẹo bạc hà Alpenliebe 90g",
-                            StockQuantity = 150
+                            Barcode = "CK000007",
+                            CategoryId = 4,
+                            Price = 28000m,
+                            ProductName = "Khoai tây chiên Lay's vị tự nhiên 95g",
+                            StockQuantity = 90
                         },
                         new
                         {
                             ProductId = 8,
-                            Barcode = "SWT000008",
-                            CategoryId = 8,
-                            Price = 135000m,
-                            ProductName = "Socola Lindt Excellence Dark 100g",
-                            StockQuantity = 70
+                            Barcode = "CK000008",
+                            CategoryId = 5,
+                            Price = 7000m,
+                            ProductName = "Nước suối Aquafina 500ml",
+                            StockQuantity = 200
                         },
                         new
                         {
                             ProductId = 9,
-                            Barcode = "SWT000009",
-                            CategoryId = 3,
-                            Price = 45000m,
-                            ProductName = "Bánh quy Oreo Original 133g",
+                            Barcode = "CK000009",
+                            CategoryId = 5,
+                            Price = 11000m,
+                            ProductName = "Nước ngọt Coca-Cola lon 330ml",
                             StockQuantity = 180
                         },
                         new
                         {
                             ProductId = 10,
-                            Barcode = "SWT000010",
-                            CategoryId = 11,
-                            Price = 69000m,
-                            ProductName = "Kẹo trái cây Skittles Fruits 125g",
-                            StockQuantity = 110
+                            Barcode = "CK000010",
+                            CategoryId = 6,
+                            Price = 10000m,
+                            ProductName = "Trà xanh C2 hương chanh 455ml",
+                            StockQuantity = 150
                         },
                         new
                         {
                             ProductId = 11,
-                            Barcode = "SWT000011",
-                            CategoryId = 12,
-                            Price = 145000m,
-                            ProductName = "Bánh ngũ cốc Kellogg's 300g",
-                            StockQuantity = 50
+                            Barcode = "CK000011",
+                            CategoryId = 6,
+                            Price = 18000m,
+                            ProductName = "Cà phê sữa Highlands 235ml",
+                            StockQuantity = 100
                         },
                         new
                         {
                             ProductId = 12,
-                            Barcode = "SWT000012",
-                            CategoryId = 14,
-                            Price = 175000m,
-                            ProductName = "Hộp quà Socola Merci 250g",
-                            StockQuantity = 45
+                            Barcode = "CK000012",
+                            CategoryId = 7,
+                            Price = 9000m,
+                            ProductName = "Sữa tươi Vinamilk 100% 180ml",
+                            StockQuantity = 120
                         },
                         new
                         {
                             ProductId = 13,
-                            Barcode = "SWT000013",
-                            CategoryId = 13,
-                            Price = 120000m,
-                            ProductName = "Hạt hạnh nhân rang muối 200g",
-                            StockQuantity = 75
+                            Barcode = "CK000013",
+                            CategoryId = 8,
+                            Price = 13000m,
+                            ProductName = "Nước tăng lực Red Bull 250ml",
+                            StockQuantity = 100
                         },
                         new
                         {
                             ProductId = 14,
-                            Barcode = "SWT000014",
-                            CategoryId = 7,
-                            Price = 105000m,
-                            ProductName = "Kẹo dẻo Trolli Sour Glowworms 200g",
-                            StockQuantity = 85
+                            Barcode = "CK000014",
+                            CategoryId = 9,
+                            Price = 8000m,
+                            ProductName = "Khăn giấy bỏ túi Pulppy 10 tờ",
+                            StockQuantity = 70
                         },
                         new
                         {
                             ProductId = 15,
-                            Barcode = "SWT000015",
-                            CategoryId = 3,
-                            Price = 125000m,
-                            ProductName = "Bánh quy Walkers Shortbread 150g",
-                            StockQuantity = 55
+                            Barcode = "CK000015",
+                            CategoryId = 10,
+                            Price = 25000m,
+                            ProductName = "Nước giặt OMO túi 400g",
+                            StockQuantity = 40
                         });
                 });
 

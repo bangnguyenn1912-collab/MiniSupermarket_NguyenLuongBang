@@ -53,582 +53,283 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dgvCustomers = new System.Windows.Forms.DataGridView();
-
-            this.txtCustomerId = new System.Windows.Forms.TextBox();
-            this.txtCustomerName = new System.Windows.Forms.TextBox();
-            this.txtPhoneNumber = new System.Windows.Forms.TextBox();
-            this.txtAddress = new System.Windows.Forms.TextBox();
-            this.txtRewardPoints = new System.Windows.Forms.TextBox();
-            this.txtMembershipRank = new System.Windows.Forms.TextBox();
-
-            this.lblCustomerId = new System.Windows.Forms.Label();
-            this.lblCustomerName = new System.Windows.Forms.Label();
-            this.lblPhoneNumber = new System.Windows.Forms.Label();
-            this.lblAddress = new System.Windows.Forms.Label();
-            this.lblRewardPoints = new System.Windows.Forms.Label();
-            this.lblMembershipRank = new System.Windows.Forms.Label();
-
-            this.btnLoad = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnUpdate = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnSearch = new System.Windows.Forms.Button();
-
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCustomers)).BeginInit();
-            this.SuspendLayout();
-
-            // =========================================================
-            // FORM
-            // =========================================================
-
-            this.AutoScaleDimensions =
-                new System.Drawing.SizeF(7F, 15F);
-
-            this.AutoScaleMode =
-                System.Windows.Forms.AutoScaleMode.Font;
-
-            this.ClientSize =
-                new System.Drawing.Size(1100, 650);
-
-            this.Name =
-                "FormCustomerManagement";
-
-            this.Text =
-                "Quản lý khách hàng";
-
-            this.StartPosition =
-                System.Windows.Forms.FormStartPosition.CenterScreen;
-
-            this.BackColor =
-                System.Drawing.Color.White;
-
-            // =========================================================
-            // TITLE
-            // =========================================================
-
-            System.Windows.Forms.Label lblTitle =
-                new System.Windows.Forms.Label();
-
+            dgvCustomers = new DataGridView();
+            txtCustomerId = new TextBox();
+            txtCustomerName = new TextBox();
+            txtPhoneNumber = new TextBox();
+            txtAddress = new TextBox();
+            txtRewardPoints = new TextBox();
+            txtMembershipRank = new TextBox();
+            lblCustomerId = new Label();
+            lblCustomerName = new Label();
+            lblPhoneNumber = new Label();
+            lblAddress = new Label();
+            lblRewardPoints = new Label();
+            lblMembershipRank = new Label();
+            btnLoad = new Button();
+            btnAdd = new Button();
+            btnUpdate = new Button();
+            btnDelete = new Button();
+            btnSearch = new Button();
+            lblTitle = new Label();
+            ((System.ComponentModel.ISupportInitialize)dgvCustomers).BeginInit();
+            SuspendLayout();
+            // 
+            // dgvCustomers
+            // 
+            dgvCustomers.AllowUserToAddRows = false;
+            dgvCustomers.AllowUserToDeleteRows = false;
+            dgvCustomers.AllowUserToResizeRows = false;
+            dgvCustomers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvCustomers.BackgroundColor = Color.White;
+            dgvCustomers.BorderStyle = BorderStyle.Fixed3D;
+            dgvCustomers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvCustomers.Location = new Point(34, 533);
+            dgvCustomers.Margin = new Padding(3, 4, 3, 4);
+            dgvCustomers.MultiSelect = false;
+            dgvCustomers.Name = "dgvCustomers";
+            dgvCustomers.ReadOnly = true;
+            dgvCustomers.RowHeadersVisible = false;
+            dgvCustomers.RowHeadersWidth = 51;
+            dgvCustomers.RowTemplate.Height = 30;
+            dgvCustomers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvCustomers.Size = new Size(1183, 293);
+            dgvCustomers.TabIndex = 0;
+            // 
+            // txtCustomerId
+            // 
+            txtCustomerId.BackColor = Color.LightGray;
+            txtCustomerId.Location = new Point(171, 109);
+            txtCustomerId.Margin = new Padding(3, 4, 3, 4);
+            txtCustomerId.Name = "txtCustomerId";
+            txtCustomerId.ReadOnly = true;
+            txtCustomerId.Size = new Size(285, 27);
+            txtCustomerId.TabIndex = 2;
+            // 
+            // txtCustomerName
+            // 
+            txtCustomerName.Location = new Point(171, 163);
+            txtCustomerName.Margin = new Padding(3, 4, 3, 4);
+            txtCustomerName.Name = "txtCustomerName";
+            txtCustomerName.Size = new Size(285, 27);
+            txtCustomerName.TabIndex = 4;
+            // 
+            // txtPhoneNumber
+            // 
+            txtPhoneNumber.Location = new Point(171, 216);
+            txtPhoneNumber.Margin = new Padding(3, 4, 3, 4);
+            txtPhoneNumber.Name = "txtPhoneNumber";
+            txtPhoneNumber.Size = new Size(285, 27);
+            txtPhoneNumber.TabIndex = 6;
+            // 
+            // txtAddress
+            // 
+            txtAddress.Location = new Point(171, 269);
+            txtAddress.Margin = new Padding(3, 4, 3, 4);
+            txtAddress.Name = "txtAddress";
+            txtAddress.Size = new Size(285, 27);
+            txtAddress.TabIndex = 8;
+            // 
+            // txtRewardPoints
+            // 
+            txtRewardPoints.Location = new Point(171, 323);
+            txtRewardPoints.Margin = new Padding(3, 4, 3, 4);
+            txtRewardPoints.Name = "txtRewardPoints";
+            txtRewardPoints.Size = new Size(285, 27);
+            txtRewardPoints.TabIndex = 10;
+            txtRewardPoints.Text = "0";
+            // 
+            // txtMembershipRank
+            // 
+            txtMembershipRank.Location = new Point(171, 376);
+            txtMembershipRank.Margin = new Padding(3, 4, 3, 4);
+            txtMembershipRank.Name = "txtMembershipRank";
+            txtMembershipRank.Size = new Size(285, 27);
+            txtMembershipRank.TabIndex = 12;
+            txtMembershipRank.Text = "Chuẩn";
+            // 
+            // lblCustomerId
+            // 
+            lblCustomerId.AutoSize = true;
+            lblCustomerId.Font = new Font("Segoe UI", 10F);
+            lblCustomerId.Location = new Point(34, 113);
+            lblCustomerId.Name = "lblCustomerId";
+            lblCustomerId.Size = new Size(132, 23);
+            lblCustomerId.TabIndex = 1;
+            lblCustomerId.Text = "Mã khách hàng:";
+            // 
+            // lblCustomerName
+            // 
+            lblCustomerName.AutoSize = true;
+            lblCustomerName.Font = new Font("Segoe UI", 10F);
+            lblCustomerName.Location = new Point(34, 167);
+            lblCustomerName.Name = "lblCustomerName";
+            lblCustomerName.Size = new Size(134, 23);
+            lblCustomerName.TabIndex = 3;
+            lblCustomerName.Text = "Tên khách hàng:";
+            // 
+            // lblPhoneNumber
+            // 
+            lblPhoneNumber.AutoSize = true;
+            lblPhoneNumber.Font = new Font("Segoe UI", 10F);
+            lblPhoneNumber.Location = new Point(34, 220);
+            lblPhoneNumber.Name = "lblPhoneNumber";
+            lblPhoneNumber.Size = new Size(115, 23);
+            lblPhoneNumber.TabIndex = 5;
+            lblPhoneNumber.Text = "Số điện thoại:";
+            // 
+            // lblAddress
+            // 
+            lblAddress.AutoSize = true;
+            lblAddress.Font = new Font("Segoe UI", 10F);
+            lblAddress.Location = new Point(34, 273);
+            lblAddress.Name = "lblAddress";
+            lblAddress.Size = new Size(66, 23);
+            lblAddress.TabIndex = 7;
+            lblAddress.Text = "Địa chỉ:";
+            // 
+            // lblRewardPoints
+            // 
+            lblRewardPoints.AutoSize = true;
+            lblRewardPoints.Font = new Font("Segoe UI", 10F);
+            lblRewardPoints.Location = new Point(34, 327);
+            lblRewardPoints.Name = "lblRewardPoints";
+            lblRewardPoints.Size = new Size(114, 23);
+            lblRewardPoints.TabIndex = 9;
+            lblRewardPoints.Text = "Điểm tích lũy:";
+            // 
+            // lblMembershipRank
+            // 
+            lblMembershipRank.AutoSize = true;
+            lblMembershipRank.Font = new Font("Segoe UI", 10F);
+            lblMembershipRank.Location = new Point(34, 380);
+            lblMembershipRank.Name = "lblMembershipRank";
+            lblMembershipRank.Size = new Size(141, 23);
+            lblMembershipRank.TabIndex = 11;
+            lblMembershipRank.Text = "Hạng thành viên:";
+            // 
+            // btnLoad
+            // 
+            btnLoad.BackColor = Color.FromArgb(0, 123, 255);
+            btnLoad.FlatAppearance.BorderSize = 0;
+            btnLoad.FlatStyle = FlatStyle.Flat;
+            btnLoad.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnLoad.ForeColor = Color.White;
+            btnLoad.Location = new Point(34, 447);
+            btnLoad.Margin = new Padding(3, 4, 3, 4);
+            btnLoad.Name = "btnLoad";
+            btnLoad.Size = new Size(126, 51);
+            btnLoad.TabIndex = 13;
+            btnLoad.Text = "Tải danh sách";
+            btnLoad.UseVisualStyleBackColor = false;
+            // 
+            // btnAdd
+            // 
+            btnAdd.BackColor = Color.FromArgb(40, 167, 69);
+            btnAdd.FlatAppearance.BorderSize = 0;
+            btnAdd.FlatStyle = FlatStyle.Flat;
+            btnAdd.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnAdd.ForeColor = Color.White;
+            btnAdd.Location = new Point(171, 447);
+            btnAdd.Margin = new Padding(3, 4, 3, 4);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(114, 51);
+            btnAdd.TabIndex = 14;
+            btnAdd.Text = "Thêm";
+            btnAdd.UseVisualStyleBackColor = false;
+            // 
+            // btnUpdate
+            // 
+            btnUpdate.BackColor = Color.FromArgb(255, 193, 7);
+            btnUpdate.FlatAppearance.BorderSize = 0;
+            btnUpdate.FlatStyle = FlatStyle.Flat;
+            btnUpdate.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnUpdate.ForeColor = Color.Black;
+            btnUpdate.Location = new Point(297, 447);
+            btnUpdate.Margin = new Padding(3, 4, 3, 4);
+            btnUpdate.Name = "btnUpdate";
+            btnUpdate.Size = new Size(114, 51);
+            btnUpdate.TabIndex = 15;
+            btnUpdate.Text = "Cập nhật";
+            btnUpdate.UseVisualStyleBackColor = false;
+            // 
+            // btnDelete
+            // 
+            btnDelete.BackColor = Color.FromArgb(220, 53, 69);
+            btnDelete.FlatAppearance.BorderSize = 0;
+            btnDelete.FlatStyle = FlatStyle.Flat;
+            btnDelete.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnDelete.ForeColor = Color.White;
+            btnDelete.Location = new Point(426, 447);
+            btnDelete.Margin = new Padding(3, 4, 3, 4);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(114, 51);
+            btnDelete.TabIndex = 16;
+            btnDelete.Text = "Xóa";
+            btnDelete.UseVisualStyleBackColor = false;
+            // 
+            // btnSearch
+            // 
+            btnSearch.BackColor = Color.FromArgb(108, 117, 125);
+            btnSearch.FlatAppearance.BorderSize = 0;
+            btnSearch.FlatStyle = FlatStyle.Flat;
+            btnSearch.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnSearch.ForeColor = Color.White;
+            btnSearch.Location = new Point(557, 447);
+            btnSearch.Margin = new Padding(3, 4, 3, 4);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new Size(114, 51);
+            btnSearch.TabIndex = 17;
+            btnSearch.Text = "Tìm kiếm";
+            btnSearch.UseVisualStyleBackColor = false;
+            // 
+            // lblTitle
+            // 
             lblTitle.AutoSize = true;
-
-            lblTitle.Font =
-                new System.Drawing.Font(
-                    "Segoe UI",
-                    20F,
-                    System.Drawing.FontStyle.Bold,
-                    System.Drawing.GraphicsUnit.Point);
-
-            lblTitle.ForeColor =
-                System.Drawing.Color.FromArgb(0, 102, 204);
-
-            lblTitle.Location =
-                new System.Drawing.Point(350, 20);
-
-            lblTitle.Name =
-                "lblTitle";
-
-            lblTitle.Size =
-                new System.Drawing.Size(390, 37);
-
-            lblTitle.Text =
-                "QUẢN LÝ KHÁCH HÀNG";
-
-            this.Controls.Add(lblTitle);
-
-            // =========================================================
-            // LABEL CUSTOMER ID
-            // =========================================================
-
-            this.lblCustomerId.AutoSize = true;
-
-            this.lblCustomerId.Font =
-                new System.Drawing.Font(
-                    "Segoe UI",
-                    10F);
-
-            this.lblCustomerId.Location =
-                new System.Drawing.Point(30, 85);
-
-            this.lblCustomerId.Name =
-                "lblCustomerId";
-
-            this.lblCustomerId.Text =
-                "Mã khách hàng:";
-
-            this.lblCustomerId.Size =
-                new System.Drawing.Size(98, 19);
-
-            this.Controls.Add(this.lblCustomerId);
-
-            // =========================================================
-            // TEXTBOX CUSTOMER ID
-            // =========================================================
-
-            this.txtCustomerId.Location =
-                new System.Drawing.Point(150, 82);
-
-            this.txtCustomerId.Name =
-                "txtCustomerId";
-
-            this.txtCustomerId.Size =
-                new System.Drawing.Size(250, 23);
-
-            this.txtCustomerId.ReadOnly = true;
-
-            this.txtCustomerId.BackColor =
-                System.Drawing.Color.LightGray;
-
-            this.Controls.Add(this.txtCustomerId);
-
-            // =========================================================
-            // LABEL CUSTOMER NAME
-            // =========================================================
-
-            this.lblCustomerName.AutoSize = true;
-
-            this.lblCustomerName.Font =
-                new System.Drawing.Font(
-                    "Segoe UI",
-                    10F);
-
-            this.lblCustomerName.Location =
-                new System.Drawing.Point(30, 125);
-
-            this.lblCustomerName.Name =
-                "lblCustomerName";
-
-            this.lblCustomerName.Text =
-                "Tên khách hàng:";
-
-            this.lblCustomerName.Size =
-                new System.Drawing.Size(110, 19);
-
-            this.Controls.Add(this.lblCustomerName);
-
-            // =========================================================
-            // TEXTBOX CUSTOMER NAME
-            // =========================================================
-
-            this.txtCustomerName.Location =
-                new System.Drawing.Point(150, 122);
-
-            this.txtCustomerName.Name =
-                "txtCustomerName";
-
-            this.txtCustomerName.Size =
-                new System.Drawing.Size(250, 23);
-
-            this.Controls.Add(this.txtCustomerName);
-
-            // =========================================================
-            // LABEL PHONE
-            // =========================================================
-
-            this.lblPhoneNumber.AutoSize = true;
-
-            this.lblPhoneNumber.Font =
-                new System.Drawing.Font(
-                    "Segoe UI",
-                    10F);
-
-            this.lblPhoneNumber.Location =
-                new System.Drawing.Point(30, 165);
-
-            this.lblPhoneNumber.Name =
-                "lblPhoneNumber";
-
-            this.lblPhoneNumber.Text =
-                "Số điện thoại:";
-
-            this.lblPhoneNumber.Size =
-                new System.Drawing.Size(96, 19);
-
-            this.Controls.Add(this.lblPhoneNumber);
-
-            // =========================================================
-            // TEXTBOX PHONE
-            // =========================================================
-
-            this.txtPhoneNumber.Location =
-                new System.Drawing.Point(150, 162);
-
-            this.txtPhoneNumber.Name =
-                "txtPhoneNumber";
-
-            this.txtPhoneNumber.Size =
-                new System.Drawing.Size(250, 23);
-
-            this.Controls.Add(this.txtPhoneNumber);
-
-            // =========================================================
-            // LABEL ADDRESS
-            // =========================================================
-
-            this.lblAddress.AutoSize = true;
-
-            this.lblAddress.Font =
-                new System.Drawing.Font(
-                    "Segoe UI",
-                    10F);
-
-            this.lblAddress.Location =
-                new System.Drawing.Point(30, 205);
-
-            this.lblAddress.Name =
-                "lblAddress";
-
-            this.lblAddress.Text =
-                "Địa chỉ:";
-
-            this.lblAddress.Size =
-                new System.Drawing.Size(53, 19);
-
-            this.Controls.Add(this.lblAddress);
-
-            // =========================================================
-            // TEXTBOX ADDRESS
-            // =========================================================
-
-            this.txtAddress.Location =
-                new System.Drawing.Point(150, 202);
-
-            this.txtAddress.Name =
-                "txtAddress";
-
-            this.txtAddress.Size =
-                new System.Drawing.Size(250, 23);
-
-            this.Controls.Add(this.txtAddress);
-
-            // =========================================================
-            // LABEL REWARD POINTS
-            // =========================================================
-
-            this.lblRewardPoints.AutoSize = true;
-
-            this.lblRewardPoints.Font =
-                new System.Drawing.Font(
-                    "Segoe UI",
-                    10F);
-
-            this.lblRewardPoints.Location =
-                new System.Drawing.Point(30, 245);
-
-            this.lblRewardPoints.Name =
-                "lblRewardPoints";
-
-            this.lblRewardPoints.Text =
-                "Điểm tích lũy:";
-
-            this.lblRewardPoints.Size =
-                new System.Drawing.Size(91, 19);
-
-            this.Controls.Add(this.lblRewardPoints);
-
-            // =========================================================
-            // TEXTBOX REWARD POINTS
-            // =========================================================
-
-            this.txtRewardPoints.Location =
-                new System.Drawing.Point(150, 242);
-
-            this.txtRewardPoints.Name =
-                "txtRewardPoints";
-
-            this.txtRewardPoints.Size =
-                new System.Drawing.Size(250, 23);
-
-            this.txtRewardPoints.Text =
-                "0";
-
-            this.Controls.Add(this.txtRewardPoints);
-
-            // =========================================================
-            // LABEL MEMBERSHIP RANK
-            // =========================================================
-
-            this.lblMembershipRank.AutoSize = true;
-
-            this.lblMembershipRank.Font =
-                new System.Drawing.Font(
-                    "Segoe UI",
-                    10F);
-
-            this.lblMembershipRank.Location =
-                new System.Drawing.Point(30, 285);
-
-            this.lblMembershipRank.Name =
-                "lblMembershipRank";
-
-            this.lblMembershipRank.Text =
-                "Hạng thành viên:";
-
-            this.lblMembershipRank.Size =
-                new System.Drawing.Size(111, 19);
-
-            this.Controls.Add(this.lblMembershipRank);
-
-            // =========================================================
-            // TEXTBOX MEMBERSHIP RANK
-            // =========================================================
-
-            this.txtMembershipRank.Location =
-                new System.Drawing.Point(150, 282);
-
-            this.txtMembershipRank.Name =
-                "txtMembershipRank";
-
-            this.txtMembershipRank.Size =
-                new System.Drawing.Size(250, 23);
-
-            this.txtMembershipRank.Text =
-                "Chuẩn";
-
-            this.Controls.Add(this.txtMembershipRank);
-
-            // =========================================================
-            // BUTTON LOAD
-            // =========================================================
-
-            this.btnLoad.BackColor =
-                System.Drawing.Color.FromArgb(0, 123, 255);
-
-            this.btnLoad.FlatStyle =
-                System.Windows.Forms.FlatStyle.Flat;
-
-            this.btnLoad.FlatAppearance.BorderSize = 0;
-
-            this.btnLoad.ForeColor =
-                System.Drawing.Color.White;
-
-            this.btnLoad.Font =
-                new System.Drawing.Font(
-                    "Segoe UI",
-                    10F,
-                    System.Drawing.FontStyle.Bold);
-
-            this.btnLoad.Location =
-                new System.Drawing.Point(30, 335);
-
-            this.btnLoad.Name =
-                "btnLoad";
-
-            this.btnLoad.Size =
-                new System.Drawing.Size(100, 38);
-
-            this.btnLoad.Text =
-                "Tải danh sách";
-
-            this.btnLoad.UseVisualStyleBackColor = false;
-
-            this.Controls.Add(this.btnLoad);
-
-            // =========================================================
-            // BUTTON ADD
-            // =========================================================
-
-            this.btnAdd.BackColor =
-                System.Drawing.Color.FromArgb(40, 167, 69);
-
-            this.btnAdd.FlatStyle =
-                System.Windows.Forms.FlatStyle.Flat;
-
-            this.btnAdd.FlatAppearance.BorderSize = 0;
-
-            this.btnAdd.ForeColor =
-                System.Drawing.Color.White;
-
-            this.btnAdd.Font =
-                new System.Drawing.Font(
-                    "Segoe UI",
-                    10F,
-                    System.Drawing.FontStyle.Bold);
-
-            this.btnAdd.Location =
-                new System.Drawing.Point(145, 335);
-
-            this.btnAdd.Name =
-                "btnAdd";
-
-            this.btnAdd.Size =
-                new System.Drawing.Size(100, 38);
-
-            this.btnAdd.Text =
-                "Thêm";
-
-            this.btnAdd.UseVisualStyleBackColor = false;
-
-            this.Controls.Add(this.btnAdd);
-
-            // =========================================================
-            // BUTTON UPDATE
-            // =========================================================
-
-            this.btnUpdate.BackColor =
-                System.Drawing.Color.FromArgb(255, 193, 7);
-
-            this.btnUpdate.FlatStyle =
-                System.Windows.Forms.FlatStyle.Flat;
-
-            this.btnUpdate.FlatAppearance.BorderSize = 0;
-
-            this.btnUpdate.ForeColor =
-                System.Drawing.Color.Black;
-
-            this.btnUpdate.Font =
-                new System.Drawing.Font(
-                    "Segoe UI",
-                    10F,
-                    System.Drawing.FontStyle.Bold);
-
-            this.btnUpdate.Location =
-                new System.Drawing.Point(260, 335);
-
-            this.btnUpdate.Name =
-                "btnUpdate";
-
-            this.btnUpdate.Size =
-                new System.Drawing.Size(100, 38);
-
-            this.btnUpdate.Text =
-                "Cập nhật";
-
-            this.btnUpdate.UseVisualStyleBackColor = false;
-
-            this.Controls.Add(this.btnUpdate);
-
-            // =========================================================
-            // BUTTON DELETE
-            // =========================================================
-
-            this.btnDelete.BackColor =
-                System.Drawing.Color.FromArgb(220, 53, 69);
-
-            this.btnDelete.FlatStyle =
-                System.Windows.Forms.FlatStyle.Flat;
-
-            this.btnDelete.FlatAppearance.BorderSize = 0;
-
-            this.btnDelete.ForeColor =
-                System.Drawing.Color.White;
-
-            this.btnDelete.Font =
-                new System.Drawing.Font(
-                    "Segoe UI",
-                    10F,
-                    System.Drawing.FontStyle.Bold);
-
-            this.btnDelete.Location =
-                new System.Drawing.Point(375, 335);
-
-            this.btnDelete.Name =
-                "btnDelete";
-
-            this.btnDelete.Size =
-                new System.Drawing.Size(100, 38);
-
-            this.btnDelete.Text =
-                "Xóa";
-
-            this.btnDelete.UseVisualStyleBackColor = false;
-
-            this.Controls.Add(this.btnDelete);
-
-            // =========================================================
-            // BUTTON SEARCH
-            // =========================================================
-
-            this.btnSearch.BackColor =
-                System.Drawing.Color.FromArgb(108, 117, 125);
-
-            this.btnSearch.FlatStyle =
-                System.Windows.Forms.FlatStyle.Flat;
-
-            this.btnSearch.FlatAppearance.BorderSize = 0;
-
-            this.btnSearch.ForeColor =
-                System.Drawing.Color.White;
-
-            this.btnSearch.Font =
-                new System.Drawing.Font(
-                    "Segoe UI",
-                    10F,
-                    System.Drawing.FontStyle.Bold);
-
-            this.btnSearch.Location =
-                new System.Drawing.Point(490, 335);
-
-            this.btnSearch.Name =
-                "btnSearch";
-
-            this.btnSearch.Size =
-                new System.Drawing.Size(100, 38);
-
-            this.btnSearch.Text =
-                "Tìm kiếm";
-
-            this.btnSearch.UseVisualStyleBackColor = false;
-
-            this.Controls.Add(this.btnSearch);
-
-            // =========================================================
-            // DATAGRIDVIEW
-            // =========================================================
-
-            this.dgvCustomers.AllowUserToAddRows = false;
-
-            this.dgvCustomers.AllowUserToDeleteRows = false;
-
-            this.dgvCustomers.AllowUserToResizeRows = false;
-
-            this.dgvCustomers.AutoSizeColumnsMode =
-                System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-
-            this.dgvCustomers.BackgroundColor =
-                System.Drawing.Color.White;
-
-            this.dgvCustomers.BorderStyle =
-                System.Windows.Forms.BorderStyle.Fixed3D;
-
-            this.dgvCustomers.ColumnHeadersHeightSizeMode =
-                System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-
-            this.dgvCustomers.Location =
-                new System.Drawing.Point(30, 400);
-
-            this.dgvCustomers.MultiSelect = false;
-
-            this.dgvCustomers.Name =
-                "dgvCustomers";
-
-            this.dgvCustomers.ReadOnly = true;
-
-            this.dgvCustomers.RowHeadersVisible = false;
-
-            this.dgvCustomers.RowTemplate.Height = 30;
-
-            this.dgvCustomers.SelectionMode =
-                System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-
-            this.dgvCustomers.Size =
-                new System.Drawing.Size(1035, 220);
-
-            this.dgvCustomers.TabIndex = 0;
-
-            this.Controls.Add(this.dgvCustomers);
-
-            // =========================================================
-            // RESUME FORM
-            // =========================================================
-
-            ((System.ComponentModel.ISupportInitialize)
-                (this.dgvCustomers)).EndInit();
-
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            lblTitle.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
+            lblTitle.ForeColor = Color.FromArgb(0, 102, 204);
+            lblTitle.Location = new Point(400, 27);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(405, 46);
+            lblTitle.TabIndex = 0;
+            lblTitle.Text = "QUẢN LÝ KHÁCH HÀNG";
+            // 
+            // FormCustomerManagement
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
+            ClientSize = new Size(1257, 867);
+            Controls.Add(lblTitle);
+            Controls.Add(lblCustomerId);
+            Controls.Add(txtCustomerId);
+            Controls.Add(lblCustomerName);
+            Controls.Add(txtCustomerName);
+            Controls.Add(lblPhoneNumber);
+            Controls.Add(txtPhoneNumber);
+            Controls.Add(lblAddress);
+            Controls.Add(txtAddress);
+            Controls.Add(lblRewardPoints);
+            Controls.Add(txtRewardPoints);
+            Controls.Add(lblMembershipRank);
+            Controls.Add(txtMembershipRank);
+            Controls.Add(btnLoad);
+            Controls.Add(btnAdd);
+            Controls.Add(btnUpdate);
+            Controls.Add(btnDelete);
+            Controls.Add(btnSearch);
+            Controls.Add(dgvCustomers);
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "FormCustomerManagement";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Quản lý khách hàng";
+            ((System.ComponentModel.ISupportInitialize)dgvCustomers).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private Label lblTitle;
     }
 }
