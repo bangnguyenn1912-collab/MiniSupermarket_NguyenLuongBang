@@ -5,6 +5,7 @@ namespace MiniSupermarket.API.Controllers
 {
     [Route("api/[controller]")] // Định tuyến: /api/roles
     [ApiController]
+    [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Admin")] // Chỉ Admin được quản lý vai trò
     public class RolesController : ControllerBase
     {
 

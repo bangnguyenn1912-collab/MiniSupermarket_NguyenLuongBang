@@ -37,15 +37,14 @@ namespace MiniSupermarket.WinForms
 
 
         // Sự kiện Form vừa bật lên: Tự động tải dữ liệu từ API lên bảng
-        private async void FormCategoryManagement_Shown(object sender, EventArgs e)
+        private async void FormCategoryManagement_Shown(object? sender, EventArgs e)
         {
-            // Kiểm tra phân quyền khóa nút ngay khi hiển thị form
-            if (SessionManager.CurrentRole != "Admin")
-            {
-                btnAdd.Enabled = false;
-                btnUpdate.Enabled = false;
-                btnDelete.Enabled = false;
-            }
+            // Chỉ Admin và Warehouse được thay đổi danh mục.
+            bool canManageCategories =
+                SessionManager.CurrentRole is "Admin" or "Warehouse";
+            btnAdd.Enabled = canManageCategories;
+            btnUpdate.Enabled = canManageCategories;
+            btnDelete.Enabled = canManageCategories;
 
             await LoadDataAsync();
         }

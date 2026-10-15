@@ -8,7 +8,7 @@ namespace MiniSupermarket.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize] // Yêu cầu đăng nhập bằng JWT
+    [Authorize(Roles = "Admin,Cashier")] // Chỉ Admin và Cashier được thao tác khách hàng
     public class CustomersController : ControllerBase
     {
         private readonly SupermarketDbContext _context;
@@ -31,6 +31,38 @@ namespace MiniSupermarket.API.Controllers
                 .ToListAsync();
 
             return Ok(customers);
+        }
+
+        // Tra cứu chính xác theo số điện thoại cho màn hình POS.
+        // Đây là API chỉ đọc, không thay đổi điểm hoặc dữ liệu khách hàng.
+        [HttpGet("by-phone/{phone}")]
+        public async Task<IActionResult> GetByPhone(string phone)
+        {
+            string normalizedPhone = phone.Trim();
+
+            if (string.IsNullOrWhiteSpace(normalizedPhone) ||
+                normalizedPhone.Length > 15)
+            {
+                return BadRequest(new
+                {
+                    message = "Số điện thoại không hợp lệ!"
+                });
+            }
+
+            var customer = await _context.Customers
+                .AsNoTracking()
+                .FirstOrDefaultAsync(c =>
+                    c.PhoneNumber == normalizedPhone);
+
+            if (customer == null)
+            {
+                return NotFound(new
+                {
+                    message = "Không tìm thấy khách hàng theo số điện thoại."
+                });
+            }
+
+            return Ok(customer);
         }
 
         // =========================================================

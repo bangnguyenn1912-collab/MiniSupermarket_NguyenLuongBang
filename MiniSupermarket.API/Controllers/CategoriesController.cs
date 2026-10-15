@@ -24,6 +24,7 @@ namespace MiniSupermarket.API.Controllers
         // GET: /api/categories
         // =========================================================
         [HttpGet]
+        [Authorize(Roles = "Admin,Warehouse")]
         public async Task<IActionResult> GetAll()
         {
             var list = await _context.Categories
@@ -38,6 +39,7 @@ namespace MiniSupermarket.API.Controllers
         // GET: /api/categories/1
         // =========================================================
         [HttpGet("{id}")]
+        [Authorize(Roles = "Admin,Warehouse")]
         public async Task<IActionResult> GetById(int id)
         {
             var category = await _context.Categories
@@ -60,6 +62,7 @@ namespace MiniSupermarket.API.Controllers
         // GET: /api/categories/search?keyword=bánh
         // =========================================================
         [HttpGet("search")]
+        [Authorize(Roles = "Admin,Warehouse")]
         public async Task<IActionResult> Search([FromQuery] string keyword)
         {
             if (string.IsNullOrWhiteSpace(keyword))
@@ -84,7 +87,7 @@ namespace MiniSupermarket.API.Controllers
         // POST: /api/categories
         // =========================================================
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,Warehouse")]
         public async Task<IActionResult> Create([FromBody] Category newCat)
         {
             if (!ModelState.IsValid)
@@ -117,7 +120,7 @@ namespace MiniSupermarket.API.Controllers
         // PUT: /api/categories/1
         // =========================================================
         [HttpPut("{id}")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,Warehouse")]
         public async Task<IActionResult> Update(
             int id,
             [FromBody] Category updateCat)
@@ -159,7 +162,7 @@ namespace MiniSupermarket.API.Controllers
         // DELETE: /api/categories/1
         // =========================================================
         [HttpDelete("{id}")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,Warehouse")]
         public async Task<IActionResult> Delete(int id)
         {
             var cat = await _context.Categories.FindAsync(id);

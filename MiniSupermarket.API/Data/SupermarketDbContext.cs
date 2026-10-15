@@ -1,9 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿
+using System;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 using MiniSupermarket.API.Models;
 
 namespace MiniSupermarket.API.Data
 {
-    // DbContext đại diện cho phiên làm việc với cơ sở dữ liệu SQL Server
+    // DbContext quản lý cơ sở dữ liệu SQL Server.
     public class SupermarketDbContext : DbContext
     {
         public SupermarketDbContext(
@@ -17,126 +20,205 @@ namespace MiniSupermarket.API.Data
         // ==========================================
 
         public DbSet<Category> Categories { get; set; }
-
         public DbSet<Product> Products { get; set; }
-
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
 
+        // Bảng tài khoản mới.
+        public DbSet<User> Users { get; set; } = null!;
 
-        // ==========================================
-            // CẤU HÌNH DỮ LIỆU MỒI (CIRCLE K EXPRESS)
-        // ==========================================
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(
+            ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
+            // ==========================================
+            // CẤU HÌNH BẢNG ORDERS
+            // ==========================================
+
+            modelBuilder.Entity<Order>(entity =>
+            {
+                entity.HasKey(o => o.OrderId);
+
+                entity.Property(o => o.CashierUsername)
+                    .HasMaxLength(50)
+                    .IsRequired();
+
+                entity.Property(o => o.CustomerPhone)
+                    .HasMaxLength(20);
+
+                entity.Property(o => o.TotalAmount)
+                    .HasPrecision(18, 2);
+
+                entity.Property(o => o.CashReceived)
+                    .HasPrecision(18, 2);
+
+                entity.Property(o => o.ChangeAmount)
+                    .HasPrecision(18, 2);
+            });
+
+            // ==========================================
+            // CẤU HÌNH BẢNG ORDERDETAILS
+            // ==========================================
+
+            modelBuilder.Entity<OrderDetail>(entity =>
+            {
+                entity.HasKey(d => d.OrderDetailId);
+
+                entity.Property(d => d.UnitPrice)
+                    .HasPrecision(18, 2);
+
+                entity.Property(d => d.TotalPrice)
+                    .HasPrecision(18, 2);
+
+                // Một hóa đơn có nhiều chi tiết.
+                entity.HasOne(d => d.Order)
+                    .WithMany(o => o.OrderDetails)
+                    .HasForeignKey(d => d.OrderId)
+                    .OnDelete(DeleteBehavior.Cascade);
+
+                // Một chi tiết thuộc một sản phẩm.
+                entity.HasOne(d => d.Product)
+                    .WithMany()
+                    .HasForeignKey(d => d.ProductId)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+            // ==========================================
+            // CẤU HÌNH BẢNG USERS - MỚI BỔ SUNG
+            // ==========================================
+
+            modelBuilder.Entity<User>(entity =>
+            {
+                // Tên bảng trong SQL Server.
+                entity.ToTable("Users");
+
+                // Khóa chính.
+                entity.HasKey(u => u.Id);
+
+                // Tên đăng nhập bắt buộc.
+                entity.Property(u => u.Username)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                // Không cho phép trùng tên đăng nhập.
+                entity.HasIndex(u => u.Username)
+                    .IsUnique();
+
+                // Họ và tên.
+                entity.Property(u => u.FullName)
+                    .IsRequired()
+                    .HasMaxLength(150);
+
+                // Email.
+                entity.Property(u => u.Email)
+                    .HasMaxLength(255);
+
+                // Vai trò.
+                entity.Property(u => u.Role)
+                    .IsRequired()
+                    .HasMaxLength(30);
+
+                // Trạng thái tài khoản.
+                entity.Property(u => u.IsActive)
+                    .HasDefaultValue(true);
+
+                // Chỉ lưu mật khẩu đã băm.
+                entity.Property(u => u.PasswordHash)
+                    .IsRequired();
+            });
 
             // ==========================================
             // SEED 15 CATEGORY
-            // DANH MỤC SẢN PHẨM CỬA HÀNG TIỆN LỢI
+            // GIỮ NGUYÊN DỮ LIỆU GỐC
             // ==========================================
 
             modelBuilder.Entity<Category>().HasData(
-
                 new Category
                 {
                     CategoryId = 1,
                     CategoryName = "Mì gói & Thực phẩm ăn liền",
                     Description = "Mì ly, phở và các món ăn liền"
                 },
-
                 new Category
                 {
                     CategoryId = 2,
                     CategoryName = "Đồ ăn chế biến sẵn",
                     Description = "Cơm nắm, bánh mì sandwich và thức ăn dùng ngay"
                 },
-
                 new Category
                 {
                     CategoryId = 3,
                     CategoryName = "Xúc xích & Thực phẩm đóng gói",
                     Description = "Xúc xích và thực phẩm đóng gói tiện lợi"
                 },
-
                 new Category
                 {
                     CategoryId = 4,
                     CategoryName = "Bánh & Đồ ăn vặt",
                     Description = "Bánh đóng gói, snack và đồ ăn nhẹ"
                 },
-
                 new Category
                 {
                     CategoryId = 5,
                     CategoryName = "Nước giải khát",
                     Description = "Nước suối và nước giải khát đóng chai, đóng lon"
                 },
-
                 new Category
                 {
                     CategoryId = 6,
                     CategoryName = "Trà & Cà phê",
                     Description = "Trà đóng chai và cà phê uống liền"
                 },
-
                 new Category
                 {
                     CategoryId = 7,
                     CategoryName = "Sữa & Sản phẩm từ sữa",
                     Description = "Sữa tươi và thức uống từ sữa"
                 },
-
                 new Category
                 {
                     CategoryId = 8,
                     CategoryName = "Nước tăng lực",
                     Description = "Các loại nước uống bổ sung năng lượng"
                 },
-
                 new Category
                 {
                     CategoryId = 9,
                     CategoryName = "Khăn giấy & Chăm sóc cá nhân",
                     Description = "Khăn giấy và vật dụng chăm sóc cá nhân"
                 },
-
                 new Category
                 {
                     CategoryId = 10,
                     CategoryName = "Hóa phẩm gia đình",
                     Description = "Nước giặt và các hóa phẩm dùng trong gia đình"
                 },
-
                 new Category
                 {
                     CategoryId = 11,
                     CategoryName = "Bánh mì & Bữa sáng",
                     Description = "Bánh mì và các sản phẩm tiện lợi cho bữa sáng"
                 },
-
                 new Category
                 {
                     CategoryId = 12,
                     CategoryName = "Đồ hộp & Thực phẩm khô",
                     Description = "Thực phẩm đóng hộp, mì và các sản phẩm khô"
                 },
-
                 new Category
                 {
                     CategoryId = 13,
                     CategoryName = "Kem & Thực phẩm đông lạnh",
                     Description = "Kem và thực phẩm bảo quản đông lạnh"
                 },
-
                 new Category
                 {
                     CategoryId = 14,
                     CategoryName = "Gia vị & Nhu yếu phẩm",
                     Description = "Gia vị và các sản phẩm thiết yếu hằng ngày"
                 },
-
                 new Category
                 {
                     CategoryId = 15,
@@ -145,14 +227,12 @@ namespace MiniSupermarket.API.Data
                 }
             );
 
-
             // ==========================================
             // SEED 15 CUSTOMER
-            // KHÁCH HÀNG CỬA HÀNG TIỆN LỢI
+            // GIỮ NGUYÊN DỮ LIỆU GỐC
             // ==========================================
 
             modelBuilder.Entity<Customer>().HasData(
-
                 new Customer
                 {
                     CustomerId = 1,
@@ -162,7 +242,6 @@ namespace MiniSupermarket.API.Data
                     RewardPoints = 1500,
                     MembershipRank = "Vàng"
                 },
-
                 new Customer
                 {
                     CustomerId = 2,
@@ -172,7 +251,6 @@ namespace MiniSupermarket.API.Data
                     RewardPoints = 500,
                     MembershipRank = "Bạc"
                 },
-
                 new Customer
                 {
                     CustomerId = 3,
@@ -182,7 +260,6 @@ namespace MiniSupermarket.API.Data
                     RewardPoints = 100,
                     MembershipRank = "Chuẩn"
                 },
-
                 new Customer
                 {
                     CustomerId = 4,
@@ -192,7 +269,6 @@ namespace MiniSupermarket.API.Data
                     RewardPoints = 2300,
                     MembershipRank = "Vàng"
                 },
-
                 new Customer
                 {
                     CustomerId = 5,
@@ -202,7 +278,6 @@ namespace MiniSupermarket.API.Data
                     RewardPoints = 800,
                     MembershipRank = "Bạc"
                 },
-
                 new Customer
                 {
                     CustomerId = 6,
@@ -212,7 +287,6 @@ namespace MiniSupermarket.API.Data
                     RewardPoints = 3200,
                     MembershipRank = "Kim Cương"
                 },
-
                 new Customer
                 {
                     CustomerId = 7,
@@ -222,7 +296,6 @@ namespace MiniSupermarket.API.Data
                     RewardPoints = 250,
                     MembershipRank = "Chuẩn"
                 },
-
                 new Customer
                 {
                     CustomerId = 8,
@@ -232,7 +305,6 @@ namespace MiniSupermarket.API.Data
                     RewardPoints = 1200,
                     MembershipRank = "Bạc"
                 },
-
                 new Customer
                 {
                     CustomerId = 9,
@@ -242,7 +314,6 @@ namespace MiniSupermarket.API.Data
                     RewardPoints = 4500,
                     MembershipRank = "Kim Cương"
                 },
-
                 new Customer
                 {
                     CustomerId = 10,
@@ -252,7 +323,6 @@ namespace MiniSupermarket.API.Data
                     RewardPoints = 150,
                     MembershipRank = "Chuẩn"
                 },
-
                 new Customer
                 {
                     CustomerId = 11,
@@ -262,7 +332,6 @@ namespace MiniSupermarket.API.Data
                     RewardPoints = 1800,
                     MembershipRank = "Vàng"
                 },
-
                 new Customer
                 {
                     CustomerId = 12,
@@ -272,7 +341,6 @@ namespace MiniSupermarket.API.Data
                     RewardPoints = 700,
                     MembershipRank = "Bạc"
                 },
-
                 new Customer
                 {
                     CustomerId = 13,
@@ -282,7 +350,6 @@ namespace MiniSupermarket.API.Data
                     RewardPoints = 5000,
                     MembershipRank = "Kim Cương"
                 },
-
                 new Customer
                 {
                     CustomerId = 14,
@@ -292,7 +359,6 @@ namespace MiniSupermarket.API.Data
                     RewardPoints = 350,
                     MembershipRank = "Chuẩn"
                 },
-
                 new Customer
                 {
                     CustomerId = 15,
@@ -304,14 +370,12 @@ namespace MiniSupermarket.API.Data
                 }
             );
 
-
             // ==========================================
             // SEED 15 PRODUCT
-            // SẢN PHẨM CỬA HÀNG TIỆN LỢI CIRCLE K EXPRESS
+            // GIỮ NGUYÊN DỮ LIỆU GỐC
             // ==========================================
 
             modelBuilder.Entity<Product>().HasData(
-
                 new Product
                 {
                     ProductId = 1,
@@ -321,7 +385,6 @@ namespace MiniSupermarket.API.Data
                     StockQuantity = 100,
                     CategoryId = 1
                 },
-
                 new Product
                 {
                     ProductId = 2,
@@ -331,7 +394,6 @@ namespace MiniSupermarket.API.Data
                     StockQuantity = 150,
                     CategoryId = 1
                 },
-
                 new Product
                 {
                     ProductId = 3,
@@ -341,7 +403,6 @@ namespace MiniSupermarket.API.Data
                     StockQuantity = 50,
                     CategoryId = 2
                 },
-
                 new Product
                 {
                     ProductId = 4,
@@ -351,7 +412,6 @@ namespace MiniSupermarket.API.Data
                     StockQuantity = 60,
                     CategoryId = 2
                 },
-
                 new Product
                 {
                     ProductId = 5,
@@ -361,7 +421,6 @@ namespace MiniSupermarket.API.Data
                     StockQuantity = 120,
                     CategoryId = 3
                 },
-
                 new Product
                 {
                     ProductId = 6,
@@ -371,7 +430,6 @@ namespace MiniSupermarket.API.Data
                     StockQuantity = 80,
                     CategoryId = 4
                 },
-
                 new Product
                 {
                     ProductId = 7,
@@ -381,7 +439,6 @@ namespace MiniSupermarket.API.Data
                     StockQuantity = 90,
                     CategoryId = 4
                 },
-
                 new Product
                 {
                     ProductId = 8,
@@ -391,7 +448,6 @@ namespace MiniSupermarket.API.Data
                     StockQuantity = 200,
                     CategoryId = 5
                 },
-
                 new Product
                 {
                     ProductId = 9,
@@ -401,7 +457,6 @@ namespace MiniSupermarket.API.Data
                     StockQuantity = 180,
                     CategoryId = 5
                 },
-
                 new Product
                 {
                     ProductId = 10,
@@ -411,7 +466,6 @@ namespace MiniSupermarket.API.Data
                     StockQuantity = 150,
                     CategoryId = 6
                 },
-
                 new Product
                 {
                     ProductId = 11,
@@ -421,7 +475,6 @@ namespace MiniSupermarket.API.Data
                     StockQuantity = 100,
                     CategoryId = 6
                 },
-
                 new Product
                 {
                     ProductId = 12,
@@ -431,7 +484,6 @@ namespace MiniSupermarket.API.Data
                     StockQuantity = 120,
                     CategoryId = 7
                 },
-
                 new Product
                 {
                     ProductId = 13,
@@ -441,7 +493,6 @@ namespace MiniSupermarket.API.Data
                     StockQuantity = 100,
                     CategoryId = 8
                 },
-
                 new Product
                 {
                     ProductId = 14,
@@ -451,7 +502,6 @@ namespace MiniSupermarket.API.Data
                     StockQuantity = 70,
                     CategoryId = 9
                 },
-
                 new Product
                 {
                     ProductId = 15,
@@ -462,6 +512,95 @@ namespace MiniSupermarket.API.Data
                     CategoryId = 10
                 }
             );
+
+            // ==========================================
+            // SEED 15 ORDERS VÀ 15 ORDERDETAILS
+            // GIỮ NGUYÊN LOGIC DỮ LIỆU MẪU
+            // ==========================================
+
+            // Đơn giá khớp với 15 sản phẩm mẫu.
+            decimal[] prices =
+            {
+                18000m, 12000m, 25000m, 22000m, 15000m,
+                32000m, 28000m, 7000m, 11000m, 10000m,
+                18000m, 9000m, 13000m, 8000m, 25000m
+            };
+
+            // Số điện thoại khách hàng mẫu.
+            string[] phones =
+            {
+                "0901122334",
+                "0918877665",
+                "0983344556",
+                "0905678123",
+                "0912345678",
+                "0987654321",
+                "0909876543",
+                "0913456789",
+                "0981234567",
+                "0903456789",
+                "0915678901",
+                "0986789012",
+                "0907890123",
+                "0918901234",
+                "0989012345"
+            };
+
+            var sampleOrders = new List<Order>();
+            var sampleOrderDetails = new List<OrderDetail>();
+
+            // Tạo 15 hóa đơn mẫu.
+            for (int i = 0; i < 15; i++)
+            {
+                int id = i + 1;
+
+                // Mỗi hóa đơn bán 2 đơn vị sản phẩm.
+                decimal total = prices[i] * 2;
+
+                // Làm tròn số tiền khách đưa lên 10.000đ.
+                decimal cash =
+                    Math.Ceiling(total / 10000m) * 10000m;
+
+                // Thông tin hóa đơn.
+                sampleOrders.Add(new Order
+                {
+                    OrderId = id,
+
+                    OrderDate = new DateTime(
+                        2026, 10, 1, 8, 0, 0,
+                        DateTimeKind.Utc
+                    ).AddDays(i / 2).AddHours(i % 2),
+
+                    CashierUsername =
+                        i % 2 == 0 ? "admin" : "cashier",
+
+                    CustomerPhone = phones[i],
+
+                    TotalAmount = total,
+
+                    CashReceived = cash,
+
+                    ChangeAmount = cash - total
+                });
+
+                // Chi tiết hóa đơn.
+                sampleOrderDetails.Add(new OrderDetail
+                {
+                    OrderDetailId = id,
+                    OrderId = id,
+                    ProductId = id,
+                    Quantity = 2,
+                    UnitPrice = prices[i],
+                    TotalPrice = total
+                });
+            }
+
+            // Đưa dữ liệu hóa đơn mẫu vào EF Core.
+            modelBuilder.Entity<Order>()
+                .HasData(sampleOrders);
+
+            modelBuilder.Entity<OrderDetail>()
+                .HasData(sampleOrderDetails);
         }
     }
 }
