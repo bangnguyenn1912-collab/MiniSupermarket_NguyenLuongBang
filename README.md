@@ -1,83 +1,39 @@
-🛒 HỆ THỐNG QUẢN LÝ SIÊU THỊ MINI (MINISUPERMARKET SYSTEM)
-Môn học: Lập trình Ứng dụng .NET Core (Mã môn: 229162)
+# 🛒 CỬA HÀNG TIỆN LỢI CIRCLE K EXPRESS
 
-Buổi thực hành: Buổi 3 (Tích hợp SQL Server & Entity Framework Core Code-First)
+## HỆ THỐNG QUẢN LÝ BÁN LẺ VÀ TỒN KHO
 
-🏗️ 1. Mô hình Kiến trúc Hệ thống (Client - Server - Database)
-Dự án được nâng cấp từ lưu trữ tạm thời (In-Memory) lên cơ sở dữ liệu quan hệ thực tế, đảm bảo tính bền vững của dữ liệu:
+**Môn học:** Lập trình Ứng dụng .NET Core  
+**Mã môn:** 229162  
+**Buổi thực hành:** Buổi 04  
+**Đề tài:** Cửa hàng Tiện lợi Circle K Express
 
-Microsoft SQL Server (Database): Nơi lưu trữ vĩnh viễn dữ liệu của hệ thống (Danh mục, Sản phẩm, Khách hàng, Tài khoản...).
+**Sinh viên thực hiện:** Nguyễn Lương Bằng  
+**Mã số sinh viên:** 2124110125
 
-MiniSupermarket.API (Backend): Dự án ASP.NET Core Web API đóng vai trò trung gian. Sử dụng Entity Framework Core (EF Core) theo chuẩn Code-First để tự động sinh cơ sở dữ liệu từ mã C# và xử lý các thao tác CRUD bất đồng bộ (Async/Await) thông qua LINQ.
+---
 
-MiniSupermarket.WinForms (Frontend Client): Ứng dụng Windows Forms (máy trạm POS/Admin), gọi API qua HttpClient kèm theo JWT Token và hiển thị trực quan lên DataGridView.
+## 1. Giới thiệu đề tài
 
-🛠️ 2. Công nghệ Sử dụng
-Ngôn ngữ: C# (.NET 8.0)
+**Circle K Express** là hệ thống quản lý cửa hàng tiện lợi được xây dựng bằng C# trên nền tảng .NET 8.0, sử dụng mô hình Client – Server – Database.
 
-Cơ sở dữ liệu: Microsoft SQL Server
+Hệ thống hỗ trợ quản lý bán hàng, sản phẩm, danh mục, khách hàng, hóa đơn, tồn kho, tài khoản nhân viên và báo cáo doanh thu.
 
-ORM (Object-Relational Mapping): Entity Framework Core 8.0 (Code-First, Migrations, Data Seeding)
+Dự án gồm hai thành phần chính:
 
-Backend: ASP.NET Core Web API, Async/Await, LINQ to Entities, Dependency Injection
+- **MiniSupermarket.API:** Backend ASP.NET Core Web API, xử lý nghiệp vụ, xác thực JWT và kết nối SQL Server thông qua Entity Framework Core.
+- **MiniSupermarket.WinForms:** Ứng dụng Windows Forms cung cấp giao diện quản lý cho Admin, Cashier và Warehouse.
 
-Frontend: Windows Forms (.NET 8.0), System.Net.Http.Json
+Dữ liệu được lưu trữ trong Microsoft SQL Server, giúp đảm bảo tính bền vững và hỗ trợ các thao tác CRUD.
 
-Công cụ: Visual Studio 2022, SQL Server Management Studio (SSMS), Swagger UI
+---
 
-📂 3. Cấu trúc Solution Cập nhật (Buổi 3)
-Plaintext
-MiniSupermarketSystem/
-│
-├── MiniSupermarket.API/          # Dự án Web API (Backend)
-│   ├── Controllers/              # Bổ sung CustomersController xử lý logic Khách hàng
-│   ├── Data/                     # Chứa SupermarketDbContext.cs (Cấu hình DB & Data Seeding)
-│   ├── Migrations/               # Chứa các file lịch sử tạo bảng và cập nhật Database tự động
-│   ├── Models/                   # Cập nhật Category.cs, thêm Product.cs và Customer.cs
-│   ├── appsettings.json          # Cấu hình chuỗi kết nối (Connection String) tới SQL Server
-│   └── Program.cs                # Đăng ký DbContext vào hệ thống Dependency Injection
-│
-└── MiniSupermarket.WinForms/     # Dự án Windows Forms (Frontend Client)
-    ├── FormLogin.cs              # Giao diện đăng nhập hệ thống
-    ├── FormCategoryManagement.cs # Quản lý Nhóm hàng (Gọi API thực tế từ CSDL)
-    ├── FormCustomerManagement.cs # (MỚI) Quản lý Khách hàng thân thiết
-    └── SessionManager.cs         # Lớp tĩnh lưu trữ Token và Vai trò
-🚀 4. Hướng dẫn Cài đặt và Chạy Dự án (Mới nhất)
-Bước 1: Cấu hình Cơ sở dữ liệu (Database)
+## 2. Mục tiêu thực hành Buổi 04
 
-Mở file appsettings.json trong project MiniSupermarket.API.
-
-Đảm bảo DefaultConnection trỏ đúng vào SQL Server của bạn (ví dụ: Server=.;Database=Phat_DB;Trusted_Connection=True;...).
-
-Mở Package Manager Console (Tools -> NuGet Package Manager -> Package Manager Console).
-
-Chọn Default project là MiniSupermarket.API và chạy lệnh:
-
-PowerShell
-Update-Database
-(Hệ thống sẽ tự động tạo Database, tạo bảng Categories, Products, Customers và nạp dữ liệu mẫu).
-
-Bước 2: Khởi chạy Backend (Web API)
-
-Nhấp chuột phải vào MiniSupermarket.API chọn Set as Startup Project.
-
-Nhấn F5 để chạy. Trình duyệt mở Swagger UI.
-
-Kiểm thử: Gọi các API GET/POST/PUT/DELETE. Mở SSMS để kiểm chứng dữ liệu đã được lưu thật xuống đĩa cứng (không còn bị mất khi tắt API như Buổi 1 & 2).
-
-Bước 3: Chạy phía Frontend (WinForms Client)
-
-Cập nhật BaseAddress trong các Form (Customer, Category, Login) khớp với Port HTTPS của Swagger.
-
-Nhấp chuột phải vào MiniSupermarket.WinForms chọn Debug -> Start new instance.
-
-Đăng nhập bằng tài khoản Admin.
-
-Trải nghiệm thao tác Thêm/Sửa/Xóa Khách hàng và Nhóm hàng. Dữ liệu sẽ đồng bộ trực tiếp với SQL Server.
-
-👨‍💻 5. Tác giả
-Họ tên sinh viên: nguyen phuoc minh
-
-Mã sinh viên: 2124110334
-
-Lớp học phần: CCQ2411C
+- Hoàn thiện giao diện quản lý cửa hàng tiện lợi.
+- Tích hợp Windows Forms với ASP.NET Core Web API.
+- Sử dụng SQL Server để lưu trữ dữ liệu.
+- Quản lý tài khoản nhân viên bằng Entity Framework Core.
+- Xác thực người dùng bằng JWT.
+- Phân quyền Admin, Cashier và Warehouse.
+- Thực hiện các chức năng quản lý bán hàng, sản phẩm, khách hàng và tồn kho.
+- Kiểm thử hệ thống bằng Swagger UI và SQL Server Management Studio.
